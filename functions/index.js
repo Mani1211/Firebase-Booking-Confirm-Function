@@ -19,54 +19,46 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendBookingConfirmMail = functions.database
-  .ref("/assignedTasks/{assignedTasksId}")
+  .ref("/bookingdetails1/{uid}")
   .onCreate((snapshot, context) => {
     const val = snapshot.val();
 
     // getting dest email by query string
 
     const mailOptions = {
-      from: "Sample Report <report@sample.com>", // You can write any mail Adress you want this doesn't effect anything
+      from: "smanivasagamtnj@gmail.com", // You can write any mail Adress you want this doesn't effect anything
       to: "iammani1211@gmail.com",
       // This mail adress should be filled with any mail you want to read it
-      title: "df",
-      subject: "Sample Subject", // Sample Subject for you template
+      Date : "Wed, 25 Aug 2021 12:24:49 +0530",
+      subject: `Booking Confirmation - ${val.general.destination} !`, // Sample Subject for you template
       html: `<body style="margin: 0; padding: 0;"> 
-            <table border="0" cellpadding="0" cellspacing="0" width="100%"> 
-                <tr>
-                    <td style="padding: 10px 0 30px 0;">
-                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #cccccc; border-collapse: collapse;">
-                            <tr>
-                                <td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
-                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/h1.gif" alt="Creating Email Magic" width="300" height="230" style="display: block;" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
-                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                                        <tr>
-                                            <td style="color: #153643; font-family: Arial, sans-serif; font-size: 24px;">
-                                                
-                                                <b>title</b>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 20px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
-                                                sb
-                                            </td>
-                                        </tr>
-                                        <tr>
-            
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>                
-                        </table>
-                    </td>
-                </tr>
-            </table>
+
+      <p>Dear ${val.general.customerName},<p>
+<p>Thank you for choosing us & we are happy to host you!!<p>
+<p>
+We’re glad that you found what you were looking for. It is our goal that you are always happy with what you bought from us, so please let us know if your buying experience was anything short of excellence. <p>
+
+<p>Please feel free to reach us for any queries.  <p>
+
+<p>Happy Day to you!! <p>
+<div style={{display: "flex"}}>
+ <img src="https://touron.in/static/media/logof.801ade17.png"  width='200px' height='70px'/>
+                
+ <div>
+<p> Best Regards, </p>
+<p>Booking Team</p>
+<p>tour On (A Brand of Lotsatravel Holidays LLP)</p>
+<p>Phone / Whatsapp : +91-9751009800  </p>
+<div style={{display: "flex"}}>
+<p>Click here for:</p>
+<a href="https://www.touron.in/" target="_blank">Website</a>
+<a href="https://www.facebook.com/touronholidays" target="_blank">Facebook</a>
+<a href="https://www.instagram.com/touronholidays" target="_blank">Instagram</a>
+
+</div>
+</div>
+ </div>
+        
         </body>
             `, // email content in HTML. You can write any Html template in here
     };
