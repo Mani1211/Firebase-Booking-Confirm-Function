@@ -9,12 +9,12 @@ admin.initializeApp();
  */
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
+  host: "smtp.zoho.com",
+  port: 465,
+  secure: true,
   auth: {
-    user: "smanivasagamtnj@gmail.com",
-    pass: "bqdrkkfwrvvsghxr",
+    user: "bookings@touron.in",
+    pass: "yYu0pVVFQSB4",
   },
 });
 
@@ -27,9 +27,10 @@ exports.sendBookingConfirmMail = functions.database
 
     const mailOptions = {
       from: "smanivasagamtnj@gmail.com", // You can write any mail Adress you want this doesn't effect anything
-      to: "iammani1211@gmail.com",
+      // to: val.general.email,
+      to: "smanivasagamtnj@gmail.com",
       // This mail adress should be filled with any mail you want to read it
-      Date : "Wed, 25 Aug 2021 12:24:49 +0530",
+      Date: "Wed, 25 Aug 2021 12:24:49 +0530",
       subject: `Booking Confirmation - ${val.general.destination} !`, // Sample Subject for you template
       html: `<body style="margin: 0; padding: 0;"> 
 
